@@ -1,0 +1,54 @@
+.root__header{
+    align-items: center;
+    background-color: $real_red;
+    box-shadow: 0px 4px 20px 3px #000000;
+    display: flex;
+    flex-direction: row;
+    height: 10vh;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.title__title--header{
+    color: white;
+    text-decoration: none;
+    &:hover{
+        color: #e4e4e4;
+        transition: ease 0.3s;
+    }
+}
+
+.user__spam{
+    align-items: center;
+    border-radius: 1000px;
+    background-color: rgba(255, 255, 255, 0.733);
+    background-image: url('../../assets/icons/user.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+}
+
+.user__options{
+    background-color: rgba(255, 255, 255, 0.699);
+    border-radius: 5px;
+    cursor: pointer;
+    height: 30px;
+    margin: 5px 10px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    transition: ease 0.3s babackground-color;
+    width: 140px;
+    &:hover{
+        background-color: rgb(255, 255, 255);
+    };
+}
+
+.user__options--disable{
+    display: none;
+}

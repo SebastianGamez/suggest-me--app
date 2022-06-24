@@ -1,0 +1,51 @@
+.gender__option{
+    border-radius: 90px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px 100px;
+    width: 160px;
+    &:hover{
+        transition: ease 0.3s background-color;
+        background-color: rgba(0, 0, 0, 0.267); 
+    }
+}
+
+.gender__option--selected{
+    transition: ease 0.3s background-color;
+    background-color: rgba(114, 255, 101, 0.575);
+}
+
+.option__image{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 90px;
+    height: 90px;
+}
+.option__image--science{
+    background-image: url('../../assets/icons/science.png');
+}
+.option__image--science_fiction{
+    background-image: url('../../assets/icons/fiction.png');
+}
+.option__image--philosophy{
+    background-image: url('../../assets/icons/philosophy.png');
+}
+.option__image--history{
+    background-image: url('../../assets/icons/history.png');
+}
+.option__image--literature{
+    background-image: url('../../assets/icons/literature.png');
+}
+.option__image--poetry{
+    background-image: url('../../assets/icons/poetry.png');
+}
+
+
+.option__title--gender{
+    margin-bottom: 15px;
+}

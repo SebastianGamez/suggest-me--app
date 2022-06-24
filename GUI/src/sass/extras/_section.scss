@@ -1,0 +1,17 @@
+.root__pleasures{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    justify-content: center;
+    width: 100%;
+}
+
+.root__home, .root__register, .root__login, .root__suggest{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    justify-content: center;
+    width: 100%;
+}
