@@ -75,6 +75,7 @@ class Database:
             if cryptocode.decrypt(row[0][3], 'apassword') == user['password']:
                 result = {
                     'logged': True,
+                    'message': 'User logged',
                     'data': {
                         'id': row[0][0],
                         'username': row[0][1],
@@ -101,11 +102,12 @@ class Database:
 
         connection = self.connection()
         cursor = connection.cursor()
-        cursor.execute('UPDATE public.users SET pleasures = %s WHERE id = %s', (data['pleasures'], data['id']))
+        cursor.execute('UPDATE public.users SET pleasures = %s WHERE id = %s', (','.join(data['pleasures']), data['id']))
         connection.commit()
 
         return {
             'added': True,
+            'pleasures': data['pleasures'],
             'message': 'Pleasures added'
         }
 

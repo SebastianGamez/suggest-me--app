@@ -1,5 +1,6 @@
 # Fast Api
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 # Models
 from models.register import UserRegister
@@ -11,6 +12,14 @@ from models.books import Genders
 from helpers.database import database
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=['*'],
+    allow_headers=['*']
+)
 
 # CRUD methods
 
@@ -38,6 +47,6 @@ async def set_pleasures(pleasures: Pleasures):
 
 
 # Get books
-@app.get('/api/books')
-async def get_books(genders: Genders):
-    return {'result': database.get_books(tuple(dict(genders)['genders']))}
+@app.get('/api/books/{genders}')
+async def get_books(genders: str):
+    return {'result': database.get_books(tuple(genders.split(',')))}

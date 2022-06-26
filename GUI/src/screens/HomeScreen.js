@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/Button'
 
 export const HomeScreen = () => {
+  
   return (
     <section className='root__home'>
 
@@ -17,7 +18,7 @@ export const HomeScreen = () => {
 
         </div>
         <div className='home__button'>
-            <Link to='/register'><Button value={'COMENZAR'} /></Link>
+            <Link to='/pleasures'><Button value={'COMENZAR'} /></Link>
         </div>
 
     </section>

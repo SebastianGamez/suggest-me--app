@@ -1,14 +1,17 @@
 // React
 import React from 'react';
 
-export const Input = ({name, type, placeholder}) => {
+export const Input = ({name, placeholder, onChange, type, value}) => {
   
     return (
     <input
-        name={name}    
-        type={type}
-        placeholder={placeholder}
+        autoComplete={'off'}  
         className='input__input'
+        name={name} 
+        onChange={onChange}   
+        placeholder={placeholder}
+        type={type}
+        value={value}
     />
   );
 
