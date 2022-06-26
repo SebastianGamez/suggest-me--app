@@ -1,5 +1,5 @@
 // React
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 // React router
 import { Redirect } from 'react-router-dom';
@@ -7,24 +7,27 @@ import { Redirect } from 'react-router-dom';
 // Components
 import { Book } from '../components/Book';
 
+//Context
+import { UserContext } from '../contexts/UserContext';
+
 export const SuggestScreen = () => {
 
-    const [books, setBooks] = useState([])
+    const { user } = useContext(UserContext);
+
+    const [books, setBooks] = useState([]);
 
     useEffect(() => {
       
-        fetch(`http://localhost:8000/api/books/${sessionStorage.getItem('pleasures')}`, { 
+        fetch(`http://localhost:8000/api/books/${user.pleasures}`, { 
         })
         .then(response => response.json())
-        .then(data => {
-            setBooks(data.result.books)
-        });
+        .then( ({result}) => setBooks(result.books));
 
-    }, [])
+    }, [user.pleasures])
   
-    if(!sessionStorage.getItem('logged')) return <Redirect to='/register' />
+    if(!user.logged) return <Redirect to='/register' />
 
-    if(sessionStorage.getItem('pleasures') === 'null') return <Redirect to='/pleasures' />
+    if(user.pleasures === null) return <Redirect to='/pleasures' />
 
     return (
         <section className='root__suggest'>

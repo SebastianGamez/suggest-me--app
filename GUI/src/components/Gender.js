@@ -7,6 +7,18 @@ export const Gender = ({title, value, setPleasures}) => {
   // Toggle config for select and unselect the gender that like the user
   const [selected, setSelected] = useState(false)
 
+  const handleClick = () => {
+
+    setSelected(!selected)
+    setPleasures(pleasures => {
+
+      if(pleasures.indexOf(value) === -1) return[...pleasures, value];
+      return pleasures.filter(pleasure => pleasure !== value);
+
+    });
+
+  }
+
   return (
     <li className='list__gender'>
         
@@ -15,22 +27,7 @@ export const Gender = ({title, value, setPleasures}) => {
           className={selected? 'gender__option gender__option--selected': 'gender__option'}
           
           // Toggle action
-          onClick={() => {
-
-            setSelected(!selected)
-            setPleasures(pleasures => {
-
-              if(pleasures.indexOf(value) !== -1){
-
-                return pleasures.filter(pleasure => pleasure !== value)
-
-              }else{
-                return[...pleasures, value]
-              }
-
-            })
-
-          }}
+          onClick={handleClick}
           >
             
             <span className={`option__image option__image--${value}`}></span>

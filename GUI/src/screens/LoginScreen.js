@@ -1,5 +1,5 @@
 // React
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 // React router
 import { Redirect } from 'react-router-dom';
@@ -8,11 +8,16 @@ import { Redirect } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 
+// Contexts
+import { UserContext } from '../contexts/UserContext';
+
 
 export const LoginScreen = () => {
   
   //Verify and redirect if the user completed the register
-  const [logged, setLogged] = useState(sessionStorage.getItem('logged'));
+  const {user, setUser} = useContext(UserContext);
+
+  //Save the input data
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
@@ -32,21 +37,21 @@ export const LoginScreen = () => {
       body: JSON.stringify(data)
     })
     .then(response => response.json())
-    .then(data => {
-      if(data.result.logged){
-        alert(data.result.message)
-        sessionStorage.setItem("logged", true);
-        sessionStorage.setItem("id", data.result.data.id);
-        sessionStorage.setItem("pleasures", data.result.data.pleasures);
-        setLogged(true)
-      }else{  
-        alert(data.result.message)
-      }
+    .then(({result}) => {
+      if(!result.logged) return alert(result.message);
+      
+      alert(result.message)
+      setUser({
+        logged: true,
+        id: result.data.id,
+        pleasures: result.data.pleasures
+      });
+
     });
     
   }
 
-  if (logged) return (<Redirect to='/pleasures' />);
+  if (user.logged) return <Redirect to='/pleasures' />;
   
   return (
     <section className='root__login'>

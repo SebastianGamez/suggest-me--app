@@ -1,5 +1,5 @@
 // React
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 // Components
 import { Button } from '../components/Button';
@@ -8,20 +8,27 @@ import { Gender } from '../components/Gender';
 // React router
 import { Redirect } from 'react-router-dom';
 
+// Context
+import { UserContext } from '../contexts/UserContext';
+
 export const PleasuresScreen = () => {
+
+  //Verify and redirect if the user completed the register
+  const { user, setUser } = useContext(UserContext);
   
   const [pleasures, setPleasures] = useState([]);
-  const [pleasuresReady, setPleasasuresReady] = useState(false);
 
 
-  if(!sessionStorage.getItem('logged')) return <Redirect to='/register' />
-  if(pleasuresReady) return <Redirect to='/suggest' />
+  if(!user.logged) return <Redirect to='/register' />;
+
+  if(!!user.pleasures) return <Redirect to='/suggest' />;
+
 
   const handleSubmit = () => {
 
     const data = {
 
-      id: parseInt(sessionStorage.getItem('id')),
+      id: user.id,
       pleasures: pleasures
 
     }
@@ -33,14 +40,12 @@ export const PleasuresScreen = () => {
       body: JSON.stringify(data)
     })
     .then(response => response.json())
-    .then(data => {
-      if(data.result.added){
-        alert(data.result.message)
-        sessionStorage.setItem('pleasures', data.result.pleasures)
-        setPleasasuresReady(true)
-      }else{
-        alert('Occurred an error')
-      }
+    .then( ({result}) => {
+      
+      if(!result.added) return alert('Occurred an error');
+      alert(result.message);
+      setUser({ user, pleasures: result.pleasures});
+
     });
     
   }
