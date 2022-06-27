@@ -1,15 +1,14 @@
 import cryptocode
 import psycopg2
 
-from book import Book
-
 
 class Database:
-    def __init__(self, host, user, password, database):
+    def __init__(self, host, user, password, database, port):
         self._host = host
         self._user = user
         self._password = password
         self._database = database
+        self._port = port
 
     @property
     def host(self):
@@ -26,6 +25,10 @@ class Database:
     @property
     def database(self):
         return self._database
+
+    @property
+    def port(self):
+        return self._port
 
     def connection(self) -> object:
 

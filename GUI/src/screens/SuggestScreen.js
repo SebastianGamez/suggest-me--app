@@ -47,7 +47,8 @@ export const SuggestScreen = () => {
                             title={book[2]}
                             gender={book[4]}
                             author={book[1]}
-                            release_date={book[3]}
+                            releaseDate={book[3]}
+                            frontPage={book[5]}
                             />
 
                     })}

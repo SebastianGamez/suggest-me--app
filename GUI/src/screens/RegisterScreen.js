@@ -9,6 +9,10 @@ import { Input } from '../components/Input';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
+// Sweet alert
+import swal from 'sweetalert';
+
+
 export const RegisterScreen = () => {
 
   //Verify and redirect if the user completed the register
@@ -39,12 +43,12 @@ export const RegisterScreen = () => {
       body: JSON.stringify(data)
     })
     .then(response => response.json())
-    .then(data => {
+    .then( ({result}) => {
       if(data.result.registered){
-        alert(data.result.message)
+        swal('¡Registro completo!', result.message, 'success')
         setRegitered(true)
       }else{
-        alert(data.result.message)
+        swal('Hubo un error :(', result.message, 'error')
       }
     });
     

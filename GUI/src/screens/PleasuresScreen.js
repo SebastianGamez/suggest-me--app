@@ -11,6 +11,9 @@ import { Redirect } from 'react-router-dom';
 // Context
 import { UserContext } from '../contexts/UserContext';
 
+// Sweet alert
+import swal from 'sweetalert';
+
 export const PleasuresScreen = () => {
 
   //Verify and redirect if the user completed the register
@@ -21,7 +24,7 @@ export const PleasuresScreen = () => {
 
   if(!user.logged) return <Redirect to='/register' />;
 
-  if(!!user.pleasures) return <Redirect to='/suggest' />;
+  if(user.pleasures !== null) return <Redirect to='/suggest' />;
 
 
   const handleSubmit = () => {
@@ -42,9 +45,9 @@ export const PleasuresScreen = () => {
     .then(response => response.json())
     .then( ({result}) => {
       
-      if(!result.added) return alert('Occurred an error');
-      alert(result.message);
-      setUser({ user, pleasures: result.pleasures});
+      if(!result.added) return swal('Hubo un error :(', 'Try again later', 'error');
+      swal('¡Géneros guardados!', result.message, 'success');
+      setUser({ ...user, pleasures: result.pleasures});
 
     });
     

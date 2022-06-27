@@ -47,6 +47,9 @@ async def set_pleasures(pleasures: Pleasures):
 
 
 # Get books
+
+
 @app.get('/api/books/{genders}')
 async def get_books(genders: str):
     return {'result': database.get_books(tuple(genders.split(',')))}
+

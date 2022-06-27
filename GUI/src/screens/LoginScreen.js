@@ -11,6 +11,9 @@ import { Input } from '../components/Input';
 // Contexts
 import { UserContext } from '../contexts/UserContext';
 
+// Sweet alert
+import swal from 'sweetalert';
+
 
 export const LoginScreen = () => {
   
@@ -38,9 +41,9 @@ export const LoginScreen = () => {
     })
     .then(response => response.json())
     .then(({result}) => {
-      if(!result.logged) return alert(result.message);
+      if(!result.logged) return swal('Hubo un error :(', result.message, 'error');
       
-      alert(result.message)
+      swal('¡Inicio de sesión completo!', result.message, 'success')
       setUser({
         logged: true,
         id: result.data.id,
