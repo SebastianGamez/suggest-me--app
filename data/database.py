@@ -10,33 +10,14 @@ class Database:
         self._database = database
         self._port = port
 
-    @property
-    def host(self):
-        return self._host
-
-    @property
-    def user(self):
-        return self._user
-
-    @property
-    def password(self):
-        return self._password
-
-    @property
-    def database(self):
-        return self._database
-
-    @property
-    def port(self):
-        return self._port
-
     def connection(self) -> object:
 
         connection = psycopg2.connect(
-            host=self.host,
-            user=self.user,
-            password=self.password,
-            database=self.database
+            host=self._host,
+            user=self._user,
+            password=self._password,
+            database=self._database,
+            port=self._port
         )
         return connection
 

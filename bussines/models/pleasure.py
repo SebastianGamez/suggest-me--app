@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
 
-class Pleasures(BaseModel):
+class Pleasure(BaseModel):
     id: int
     pleasures: list

@@ -12,6 +12,7 @@ export const Input = ({name, placeholder, onChange, type, value}) => {
         placeholder={placeholder}
         type={type}
         value={value}
+        required
     />
   );
 

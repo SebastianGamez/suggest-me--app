@@ -24,7 +24,9 @@ export const LoginScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
-  const handleLogin = () => {
+  const handleLogin = e => {
+
+    e.preventDefault();
 
     const data = {
 
@@ -83,12 +85,13 @@ export const LoginScreen = () => {
                 value={password}
               />
 
+              <div className='form__button'>
+
+                <Button onClick={handleLogin} value={'INICIAR SESIÓN'} />
+
+              </div>
+
             </form>
-            <div className='form__button'>
-
-              <Button onClick={handleLogin} value={'INICIAR SESIÓN'} />
-
-            </div>
 
         </div>
 

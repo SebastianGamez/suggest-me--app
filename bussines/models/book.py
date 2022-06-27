@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
 
-class Genders(BaseModel):
+class Gender(BaseModel):
     genders: list

@@ -3,10 +3,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # Models
-from models.register import UserRegister
-from models.login import UserLogin
-from models.pleasures import Pleasures
-from models.books import Genders
+from models.user_register import UserRegister
+from models.user_login import UserLogin
+from models.pleasure import Pleasure
 
 # Helpers
 from helpers.database import database
@@ -42,7 +41,7 @@ async def login(user: UserLogin):
 
 
 @app.put('/api/pleasures')
-async def set_pleasures(pleasures: Pleasures):
+async def set_pleasures(pleasures: Pleasure):
     return {'result': database.set_pleasures(dict(pleasures))}
 
 

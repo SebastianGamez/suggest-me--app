@@ -26,7 +26,9 @@ export const RegisterScreen = () => {
   if (regitered) return (<Redirect to='/login' />);
 
 
-  const handleRegister = () => {
+  const handleRegister = e => {
+
+    e.preventDefault();
 
     const data = {
 
@@ -44,7 +46,7 @@ export const RegisterScreen = () => {
     })
     .then(response => response.json())
     .then( ({result}) => {
-      if(data.result.registered){
+      if(result.registered){
         swal('¡Registro completo!', result.message, 'success')
         setRegitered(true)
       }else{
@@ -88,13 +90,13 @@ export const RegisterScreen = () => {
                   type={'password'}
                   value={password}
                 />
+                <div className='form__button'>
+
+                  <Button onClick={handleRegister} value={'REGISTRARSE'} />
+
+                </div>
 
             </form>
-            <div className='form__button'>
-
-              <Button onClick={handleRegister} value={'REGISTRARSE'} />
-
-            </div>
             <div className='form__conditions'>
               
               <p className='conditions__conditions--form'>Al registrarse, acepta los <Link to='#'>Términos de servicio</Link> y la <Link to='#'>política de privacidad</Link>.</p>
